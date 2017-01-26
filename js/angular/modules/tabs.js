@@ -31,7 +31,7 @@
 
         this.getTabHeadIndex = function () {
             return $scope.tabs.count = ++this.headIndex;
-        };  
+        };
 
         this.getTabBodyIndex = function () {
             return ++this.bodyIndex;
@@ -50,7 +50,7 @@
             restrict: 'EAC',
             require: '^ngTabs',
             link: function (scope, element, attributes, controller) {
-                var index = controller.getTabHeadIndex;
+                var index = controller.getTabHeadIndex();
                 var value = attributes.ngTabHead;
                 var active = /[-*\/%^=!<>&|]/.test(value) ? scope.$eval(value) : !!value;
 
@@ -78,7 +78,7 @@
             restrict: 'EAC',
             require: '^ngTabs',
             link: function (scope, element, attributes, controller) {
-                var index = controller.getTabBodyIndex;
+                var index = controller.getTabBodyIndex();
 
                 scope.$watch('tabs.index', function () {
                     element.toggleClass(attributes.ngTabBody + ' ng-show', scope.tabs.index === index);
