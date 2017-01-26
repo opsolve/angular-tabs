@@ -48,9 +48,9 @@
         return {
             scope: false,
             restrict: 'EAC',
-            require: '^ngTabs',
+            require: '?^ngTabs',
             link: function (scope, element, attributes, controller) {
-                var index = controller.getTabHeadIndex();
+                var index = angular.isDefined(controller.getTabHeadIndex()) ? controller.getTabHeadIndex() : undefined;
                 var value = attributes.ngTabHead;
                 var active = /[-*\/%^=!<>&|]/.test(value) ? scope.$eval(value) : !!value;
 
@@ -76,9 +76,9 @@
         return {
             scope: false,
             restrict: 'EAC',
-            require: '^ngTabs',
+            require: '?^ngTabs',
             link: function (scope, element, attributes, controller) {
-                var index = controller.getTabBodyIndex();
+                var index = angular.isDefined(controller.getTabBodyIndex()) ? controller.getTabBodyIndex() : undefined;
 
                 scope.$watch('tabs.index', function () {
                     element.toggleClass(attributes.ngTabBody + ' ng-show', scope.tabs.index === index);
