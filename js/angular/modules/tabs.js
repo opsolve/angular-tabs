@@ -29,17 +29,13 @@
         this.headIndex = 0;
         this.bodyIndex = 0;
 
-        if (this.getTabHeadIndex){
-            this.getTabHeadIndex = function () {
-                return $scope.tabs.count = ++this.headIndex;
-            };  
-        }
+        this.getTabHeadIndex = function () {
+            return $scope.tabs.count = ++this.headIndex;
+        };  
 
-        if (this.getTabBodyIndex){
-            this.getTabBodyIndex = function () {
-                return ++this.bodyIndex;
-            };
-        }
+        this.getTabBodyIndex = function () {
+            return ++this.bodyIndex;
+        };
     }
 
     ngTabsController.$inject = ['$scope'];
@@ -52,9 +48,9 @@
         return {
             scope: false,
             restrict: 'EAC',
-            require: '?^ngTabs',
+            require: '^ngTabs',
             link: function (scope, element, attributes, controller) {
-                var index = angular.isDefined(controller) && controller !== null && angular.isDefined(controller.getTabHeadIndex) ? controller.getTabHeadIndex() : 0;
+                var index = controller.getTabHeadIndex;
                 var value = attributes.ngTabHead;
                 var active = /[-*\/%^=!<>&|]/.test(value) ? scope.$eval(value) : !!value;
 
@@ -80,9 +76,9 @@
         return {
             scope: false,
             restrict: 'EAC',
-            require: '?^ngTabs',
+            require: '^ngTabs',
             link: function (scope, element, attributes, controller) {
-                var index = angular.isDefined(controller) && controller !== null && angular.isDefined(controller.getTabBodyIndex) ? controller.getTabBodyIndex() : 0;
+                var index = controller.getTabBodyIndex;
 
                 scope.$watch('tabs.index', function () {
                     element.toggleClass(attributes.ngTabBody + ' ng-show', scope.tabs.index === index);
