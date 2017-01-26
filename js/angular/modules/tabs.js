@@ -29,13 +29,17 @@
         this.headIndex = 0;
         this.bodyIndex = 0;
 
-        this.getTabHeadIndex = function () {
-            return $scope.tabs.count = ++this.headIndex;
-        };
+        if(this.getTabHeadIndex){
+            this.getTabHeadIndex = function () {
+                return $scope.tabs.count = ++this.headIndex;
+            };  
+        }
 
-        this.getTabBodyIndex = function () {
-            return ++this.bodyIndex;
-        };
+        if(this.getTabBodyIndex){
+            this.getTabBodyIndex = function () {
+                return ++this.bodyIndex;
+            };
+        }
     }
 
     ngTabsController.$inject = ['$scope'];
