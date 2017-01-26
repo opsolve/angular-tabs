@@ -29,13 +29,13 @@
         this.headIndex = 0;
         this.bodyIndex = 0;
 
-        if(this.getTabHeadIndex){
+        if (this.getTabHeadIndex){
             this.getTabHeadIndex = function () {
                 return $scope.tabs.count = ++this.headIndex;
             };  
         }
 
-        if(this.getTabBodyIndex){
+        if (this.getTabBodyIndex){
             this.getTabBodyIndex = function () {
                 return ++this.bodyIndex;
             };
